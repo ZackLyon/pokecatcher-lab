@@ -38,6 +38,16 @@ img {
     width: 10em;
     height: 10em;
     background-color: black;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+input[type=radio]{
+    visibility: hidden;
+}
+
+input:checked + img {
+    border: 10px solid red;
 }
 
 .btn-section {
@@ -52,8 +62,4 @@ button {
     color: white;
     width: 6em;
     height: 2.5em;
-}
-
-input[type=radio]{
-    visibility: hidden;
 }
