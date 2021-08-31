@@ -1,5 +1,5 @@
 import { findById } from './find-by-id.js';
-export { setPokedex, getPokedex, encounterPokemon };
+export { setPokedex, getPokedex, encounterPokemon, catchPokemon };
 
 
 const POKEDEX = 'POKEDEX';
@@ -34,16 +34,15 @@ function getPokedex() {
 // If this is the first time, make a new object with { id: 5, encoutered: 1, caught: 0 }
 // setPokedex
 
-function encounterPokemon(idToSearch) {
+function encounterPokemon(id) {
     const currentPokedex = getPokedex();
 
-    const seenPokemon = findById(currentPokedex, idToSearch);
-    console.log(seenPokemon);
+    const seenPokemon = findById(currentPokedex, id);
 
     if (seenPokemon) {
         seenPokemon.encountered++;
     } else if (!seenPokemon) {
-        const newObj = { id: idToSearch, encountered: 1, captured: 0 };
+        const newObj = { id: id, encountered: 1, captured: 0 };
         currentPokedex.push(newObj);
     }
     
@@ -55,3 +54,13 @@ function encounterPokemon(idToSearch) {
 // no need to check if it's been encountered. If you got this far, it has been encountered.
 // Increment the caught of this pokemon in local storage
 // setPokedex
+
+function catchPokemon(id) {
+    const currentPokedex = getPokedex();
+
+    const caughtPokemon = findById(currentPokedex, id);
+
+    caughtPokemon.captured++;
+    
+    setPokedex(currentPokedex);
+}
