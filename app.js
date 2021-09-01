@@ -1,7 +1,6 @@
 // import functions and grab DOM elements
 import { getRandomPokemon } from './utils/utils.js';
-import { renderPokemon } from './render/render-pokemon.js';
-import { getPokedex, encounterPokemon, catchPokemon } from './utils/pokedex-mgmt.js';
+import { catchPokemon, newSetup } from './utils/pokedex-mgmt.js';
 
 // initialize global state
 
@@ -11,25 +10,16 @@ import { getPokedex, encounterPokemon, catchPokemon } from './utils/pokedex-mgmt
   // update DOM to reflect the new state
 
 const catchBtn = document.querySelector('#catch-btn');
+
 let newArr = getRandomPokemon();
-
-renderPokemon(newArr);
-
-newArr.forEach(({ id }) =>{
-    encounterPokemon(id);
-});
-
-// console.log(getPokedex());
+newSetup(newArr); //display pokemon and increment encounter for each
 
 catchBtn.addEventListener('click', () => {
     const selected = document.querySelector('input:checked');
-    //add selected pokemon to captured
+    
     let captured = newArr[selected.value].id;
     catchPokemon(captured);
-    console.log(getPokedex());
+
+    newArr = getRandomPokemon();
+    newSetup(newArr);
 });
-
-
-
-
- 

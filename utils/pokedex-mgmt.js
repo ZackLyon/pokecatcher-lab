@@ -1,20 +1,14 @@
 import { findById } from './find-by-id.js';
-export { setPokedex, getPokedex, encounterPokemon, catchPokemon };
-
+import { renderPokemon } from '../render/render-pokemon.js';
+export { setPokedex, getPokedex, encounterPokemon, catchPokemon, newSetup };
 
 const POKEDEX = 'POKEDEX';
-// setPokedex(pokedex)************************************
-// takes in a pokedex, stringifies it and puts it into local storage
-
 
 function setPokedex(pokedex) {
     const pokedexToString = JSON.stringify(pokedex);
 
     localStorage.setItem(POKEDEX, pokedexToString);
 }
-
-// getPokedex()*******************************
-// retrieves and parses the pokedex in local storage
 
 function getPokedex() {
     const stringyPokedex = localStorage.getItem(POKEDEX);
@@ -25,14 +19,6 @@ function getPokedex() {
 
     return JSON.parse(stringyPokedex);
 }
-
-
-// encounterPokemon(id)********************
-
-// getPokedex
-// If the pokemon has been previously seen, just increment the times seen
-// If this is the first time, make a new object with { id: 5, encoutered: 1, caught: 0 }
-// setPokedex
 
 function encounterPokemon(id) {
     const currentPokedex = getPokedex();
@@ -49,12 +35,6 @@ function encounterPokemon(id) {
     setPokedex(currentPokedex);
 }
 
-// catchPokemon(id)*********************
-// getPokedex
-// no need to check if it's been encountered. If you got this far, it has been encountered.
-// Increment the caught of this pokemon in local storage
-// setPokedex
-
 function catchPokemon(id) {
     const currentPokedex = getPokedex();
 
@@ -63,4 +43,13 @@ function catchPokemon(id) {
     caughtPokemon.captured++;
     
     setPokedex(currentPokedex);
+}
+
+function newSetup(arr){
+
+    renderPokemon(arr);
+
+    arr.forEach(({ id }) =>{
+        encounterPokemon(id);
+    });
 }

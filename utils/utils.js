@@ -1,5 +1,5 @@
 import pokemon from '../data/data.js';
-export { getRandomPokemon, capturePokemon };
+export { getRandomPokemon };
 
 function getRandomPokemon() {
     //get 3 random indices
@@ -23,6 +23,3 @@ function randomizeIndex() {
     return Math.floor(Math.random() * pokemon.length);
 }
 
-function capturePokemon(arr) {
-    
-}
