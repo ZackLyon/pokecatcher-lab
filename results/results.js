@@ -103,3 +103,4 @@ const captureChart = new Chart(captureChartEl, { // eslint-disable-line
         }
     }
 });
+
