@@ -8,14 +8,16 @@ test('getPokedex should take in a stringified pokedex and return it in parsed fo
     const pokedex = [
         {
             id: 5,
-            encountered: 1
+            encountered: 1,
+            captured: 0
         }
     ];
     
     const expectedPokedex = [
         {
             id: 5,
-            encountered: 1
+            encountered: 1,
+            captured: 0
         }
     ];
     
@@ -34,15 +36,17 @@ test('setPokedex should take in an array of objects pokedex and store it to loca
     const pokedex = [
         {
             id: 5,
-            encountered: 1
+            encountered: 1,
+            captured: 0
         }
     ];
     
-    const stringyPokedex = localStorage.getItem(POKEDEX);
+   
+    setPokedex(pokedex);
 
-    const actual = setPokedex(pokedex);
+    const actual = JSON.parse(localStorage.getItem(POKEDEX));
 
-    const expected = localStorage.setItem(POKEDEX, stringyPokedex);
+    const expected = pokedex;
 
     expect.deepEqual(actual, expected);
 });
@@ -52,24 +56,25 @@ test('encounterPokemon should increment the times encountered if an item is alre
     const pokedex = [
         {
             id: 5,
-            encountered: 1
+            encountered: 1,
+            captured: 0
         }
     ];
     
-    const expectedPokedex = [
+    const expected = [
         {
             id: 5,
-            encountered: 2
+            encountered: 2,
+            captured: 0
         }
     ];
     
     const stringyPokedex = JSON.stringify(pokedex);
-    localStorage.setItem('POKEDEX', stringyPokedex);
+    localStorage.setItem(POKEDEX, stringyPokedex);
 
-    const actual = encounterPokemon(5);
+    encounterPokemon(5);
 
-    const stringyExpected = JSON.stringify(expectedPokedex);
-    const expected = localStorage.setItem(POKEDEX, stringyExpected);
+    const actual = JSON.parse(localStorage.getItem(POKEDEX));
 
     expect.deepEqual(actual, expected);
 });
@@ -81,23 +86,20 @@ test('encounterPokemon should add the item and set encountered to 1 if item is n
     const stringEmpty = JSON.stringify(emptyPokedex);
     localStorage.setItem(POKEDEX, stringEmpty);
     
-    const expectedPokedex = [
+    const expected = [
         {
             id: 5,
-            encountered: 1
+            encountered: 1,
+            captured: 0
         }
     ];
 
-    const actual = encounterPokemon(5);
+    encounterPokemon(5);
 
-    const stringyExpected = JSON.stringify(expectedPokedex);
-    const expected = localStorage.setItem(POKEDEX, stringyExpected);
+    const actual = JSON.parse(localStorage.getItem(POKEDEX));
 
     expect.deepEqual(actual, expected);
 });
-
-
-
 
 test('catchPokemon should take in an id, then increment the times captured for that id', (expect) => {
 
@@ -109,7 +111,7 @@ test('catchPokemon should take in an id, then increment the times captured for t
         }
     ];
     
-    const expectedPokedex = [
+    const expected = [
         {
             id: 5,
             encountered: 1,
@@ -120,10 +122,9 @@ test('catchPokemon should take in an id, then increment the times captured for t
     const stringyPokedex = JSON.stringify(pokedex);
     localStorage.setItem('POKEDEX', stringyPokedex);
 
-    const actual = catchPokemon(5);
+    catchPokemon(5);
 
-    const stringyExpected = JSON.stringify(expectedPokedex);
-    const expected = localStorage.setItem(POKEDEX, stringyExpected);
+    const actual = JSON.parse(localStorage.getItem(POKEDEX));
 
     expect.deepEqual(actual, expected);
 });
