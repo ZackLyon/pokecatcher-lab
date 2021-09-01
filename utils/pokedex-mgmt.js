@@ -1,4 +1,5 @@
 import { renderPokemon } from '../render/render-pokemon.js';
+import { renderStats } from '../render/render-stats.js';
 export { setPokedex, getPokedex, encounterPokemon, catchPokemon, newSetup };
 
 const POKEDEX = 'POKEDEX';
@@ -47,8 +48,10 @@ function catchPokemon(id) {
 function newSetup(arr){
 
     renderPokemon(arr);
+    
 
     arr.forEach(({ id }) =>{
         encounterPokemon(id);
     });
+    renderStats(arr);
 }

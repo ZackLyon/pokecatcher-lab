@@ -18,18 +18,36 @@
     </header>
     <main>
         <section class="main-section">
-            <label>
-                <input type="radio" name="selection" value="0">
-                <img id="render-1" src="" alt="pokemon">
-            </label>
-            <label>
-                <input type="radio" name="selection" value="1" checked>
-                <img id="render-2" src="" alt="pokemon">
-            </label>
-            <label>
-                <input type="radio" name="selection" value="2">
-                <img id="render-3" src="" alt="pokemon">
-            </label>
+            <div class="img-container">
+                <label>
+                    <input type="radio" name="selection" value="0">
+                    <img id="render-1" src="" alt="pokemon">
+                </label>
+                <div>
+                    <div class="stats-render">Encountered: <span id="encountered-render-1">0</span></div>
+                    <div class="stats-render">Captured: <span id="captured-render-1">0</span></div>
+                </div>
+            </div>
+            <div class="img-container">
+                <label>
+                    <input type="radio" name="selection" value="1" checked>
+                    <img id="render-2" src="" alt="pokemon">
+                </label>
+                <div>
+                    <div class="stats-render">Encountered: <span id="encountered-render-2">0</span></div>
+                    <div class="stats-render">Captured: <span id="captured-render-2">0</span></div>
+                </div>
+            </div>
+            <div class="img-container">
+                <label>
+                    <input type="radio" name="selection" value="2">
+                    <img id="render-3" src="" alt="pokemon">
+                </label>
+                <div>
+                    <div class="stats-render">Encountered: <span id="encountered-render-3">0</span></div>
+                    <div class="stats-render">Captured: <span id="captured-render-3">0</span></div>
+                </div>
+            </div>
         </section>
         <section class="btn-section">
             <button id="catch-btn">Catch</button>
