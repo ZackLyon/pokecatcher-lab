@@ -20,7 +20,6 @@ function getRandomPokemon(arr) {
 }
 
 function randomizeIndex(arr) {
-    
     let random = Math.floor(Math.random() * pokemon.length);
 
     if (arr){
@@ -33,5 +32,3 @@ function randomizeIndex(arr) {
 
     return random;
 }
-
-

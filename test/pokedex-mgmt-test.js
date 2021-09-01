@@ -47,7 +47,7 @@ test('setPokedex should take in an array of objects pokedex and store it to loca
     expect.deepEqual(actual, expected);
 });
 
-test('encounterPokemon should increment the times encountered if an item is already in the pokedex or add the item and set encountered to 1 if it is not', (expect) => {
+test('encounterPokemon should increment the times encountered if an item is already in the pokedex', (expect) => {
 
     const pokedex = [
         {
@@ -73,6 +73,31 @@ test('encounterPokemon should increment the times encountered if an item is alre
 
     expect.deepEqual(actual, expected);
 });
+
+test('encounterPokemon should add the item and set encountered to 1 if item is not present', (expect) => {
+
+    const emptyPokedex = [];
+
+    const stringEmpty = JSON.stringify(emptyPokedex);
+    localStorage.setItem(POKEDEX, stringEmpty);
+    
+    const expectedPokedex = [
+        {
+            id: 5,
+            encountered: 1
+        }
+    ];
+
+    const actual = encounterPokemon(5);
+
+    const stringyExpected = JSON.stringify(expectedPokedex);
+    const expected = localStorage.setItem(POKEDEX, stringyExpected);
+
+    expect.deepEqual(actual, expected);
+});
+
+
+
 
 test('catchPokemon should take in an id, then increment the times captured for that id', (expect) => {
 

@@ -1,20 +1,14 @@
 import { getPokedex } from '../utils/pokedex-mgmt.js';
 export { renderStats };
 
-
 function renderStats(arr){
     let currentPokedex = getPokedex();
-    let counter = 1;
 
-    arr.forEach(({ id }) => {
+    arr.forEach(({ id }, i) => {
         const newPokemon = currentPokedex.find(element => element.id === id);
-        const encounteredEl = document.getElementById(`encountered-render-${counter}`);
-        const capturedEl = document.getElementById(`captured-render-${counter}`);
+        const encounteredEl = document.getElementById(`encountered-render-${i + 1}`);
+        const capturedEl = document.getElementById(`captured-render-${i + 1}`);
         encounteredEl.textContent = newPokemon.encountered;
         capturedEl.textContent = newPokemon.captured;
-        counter++;
     });
-    
-
 }
-
