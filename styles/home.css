@@ -1,5 +1,9 @@
 /* add home page styles here */
 
+:root {
+    --red: rgb(243,	28,	29);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,10 +20,11 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
+    background-color: var(--red);
     color: white;
     height: 20%;
-    box-shadow: 0px 10px 20px -12px rgba(0,0,0,0.45);;
+    box-shadow: 0px 10px 20px -12px rgba(0,0,0,0.45);
+    border: black 1em solid;
 }
 
 main {
@@ -32,11 +37,26 @@ main {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-image: url('../assets/pokeball.png');
+    background-size: auto;
+    background-position: center;
+}
+.img-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stats-render{
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
 img {
-    width: 10em;
-    height: 10em;
+    width: 25em;
+    height: 25em;
     background-color: black;
     transition: all 0.1s ease-in-out;
     cursor: pointer;
@@ -48,20 +68,22 @@ input[type=radio]{
 }
 
 input:checked + img {
-    border: 10px solid red;
+    border: 10px solid darkgray;
 }
 
 .btn-section {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 
 button {
     font-size: 1.2em;
-    background-color: red;
+    background-color: var(--red);
     color: white;
     width: 6em;
     height: 2.5em;
     border-radius: 10px;
+    border: none;
 }

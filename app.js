@@ -12,14 +12,14 @@ import { catchPokemon, newSetup } from './utils/pokedex-mgmt.js';
 const catchBtn = document.querySelector('#catch-btn');
 
 let newArr = getRandomPokemon();
-newSetup(newArr); //display pokemon and increment encounter for each
+newSetup(newArr); //display pokemon, increment encounter for each, display stats
 
 catchBtn.addEventListener('click', () => {
     const selected = document.querySelector('input:checked');
     
     let captured = newArr[selected.value].id;
     catchPokemon(captured);
-
-    newArr = getRandomPokemon();
+    let oldArr = [...newArr];
+    newArr = getRandomPokemon(oldArr);
     newSetup(newArr);
 });

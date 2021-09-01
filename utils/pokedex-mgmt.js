@@ -1,5 +1,5 @@
-import { findById } from './find-by-id.js';
 import { renderPokemon } from '../render/render-pokemon.js';
+import { renderStats } from '../render/render-stats.js';
 export { setPokedex, getPokedex, encounterPokemon, catchPokemon, newSetup };
 
 const POKEDEX = 'POKEDEX';
@@ -23,7 +23,7 @@ function getPokedex() {
 function encounterPokemon(id) {
     const currentPokedex = getPokedex();
 
-    const seenPokemon = findById(currentPokedex, id);
+    const seenPokemon = currentPokedex.find(element => element.id === id);
 
     if (seenPokemon) {
         seenPokemon.encountered++;
@@ -38,7 +38,7 @@ function encounterPokemon(id) {
 function catchPokemon(id) {
     const currentPokedex = getPokedex();
 
-    const caughtPokemon = findById(currentPokedex, id);
+    const caughtPokemon = currentPokedex.find(element => element.id === id);
 
     caughtPokemon.captured++;
     
@@ -48,8 +48,10 @@ function catchPokemon(id) {
 function newSetup(arr){
 
     renderPokemon(arr);
+    
 
     arr.forEach(({ id }) =>{
         encounterPokemon(id);
     });
+    renderStats(arr);
 }
