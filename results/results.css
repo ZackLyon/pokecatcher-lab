@@ -10,7 +10,6 @@
 
 html, body {
     width: 100%;
-    height: 100%;
 }
 
 header {
@@ -28,14 +27,12 @@ header {
 main {
     display: grid;
     grid-template-rows: 5fr 1fr;
-    
 }
 
 .results-section{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 60%;
 }
 
 .return-section {
