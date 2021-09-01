@@ -1,4 +1,3 @@
-import { findById } from './find-by-id.js';
 import { renderPokemon } from '../render/render-pokemon.js';
 export { setPokedex, getPokedex, encounterPokemon, catchPokemon, newSetup };
 
@@ -23,7 +22,7 @@ function getPokedex() {
 function encounterPokemon(id) {
     const currentPokedex = getPokedex();
 
-    const seenPokemon = findById(currentPokedex, id);
+    const seenPokemon = currentPokedex.find(element => element.id === id);
 
     if (seenPokemon) {
         seenPokemon.encountered++;
@@ -38,7 +37,7 @@ function encounterPokemon(id) {
 function catchPokemon(id) {
     const currentPokedex = getPokedex();
 
-    const caughtPokemon = findById(currentPokedex, id);
+    const caughtPokemon = currentPokedex.find(element => element.id === id);
 
     caughtPokemon.captured++;
     
