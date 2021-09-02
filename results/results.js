@@ -3,27 +3,26 @@ import pokemonList from '../data/data.js';
 
 const pokedex = getPokedex();
 
+
 const encounterChartEl = document.getElementById('encounter-chart');
 const captureChartEl = document.getElementById('capture-chart');
 
 const encounterIds = pokedex
-    .filter(item => Number(item.encountered) > 0)
+    .filter(({ encountered }) => encountered > 0) 
     .map(({ id }) => id);
 
-const nameArr = [];
-encounterIds.forEach((item) => {
-    const currentPokemon = pokemonList.find(element => element.id === item);
-    nameArr.push(currentPokemon.pokemon);
-});
+const encounterNames = encounterIds
+    .map(mapId => pokemonList.find(listItem => listItem.id === mapId)) //find all pokemon in encountered ids array
+    .map(({ pokemon }) => pokemon); // return each pokemon's name into an array
 
 const encounterData = pokedex
-    .filter(({ encountered }) => Number(encountered) > 0)
+    .filter(({ encountered }) => encountered > 0)
     .map(({ encountered }) => encountered);
 
 const encounterChart = new Chart(encounterChartEl, { // eslint-disable-line
     type: 'bar',
     data: {
-        labels: nameArr,
+        labels: encounterNames,
         datasets: [{
             label: 'encountered',
             data: encounterData,
@@ -56,23 +55,21 @@ const encounterChart = new Chart(encounterChartEl, { // eslint-disable-line
 });
 
 const captureIds = pokedex
-    .filter(item => Number(item.captured) > 0)
+    .filter(({ captured })=> captured > 0)
     .map(({ id }) => id);
 
-const capturedNameArr = [];
-captureIds.forEach((item) => {
-    const newPokemon = pokemonList.find(element => element.id === item);
-    capturedNameArr.push(newPokemon.pokemon);
-});
+const captureNames = captureIds
+    .map(mapId => pokemonList.find(listItem => listItem.id === mapId))
+    .map(({ pokemon }) => pokemon);
 
 const captureData = pokedex
-    .filter(({ captured }) => Number(captured) > 0)
+    .filter(({ captured }) => captured > 0)
     .map(({ captured }) => captured);
 
 const captureChart = new Chart(captureChartEl, { // eslint-disable-line
     type: 'bar',
     data: {
-        labels: capturedNameArr,
+        labels: captureNames,
         datasets: [{
             label: 'captured',
             data: captureData,
